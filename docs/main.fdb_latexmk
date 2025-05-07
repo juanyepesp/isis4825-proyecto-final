@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1746636623.10517 "main.aux" "main.bbl" "main" 1746636910.58402 0
-  "./references.bib" 1746636621.04285 290 b1dd915eaca8037bea872b5c14c8e708 ""
+["bibtex main"] 1746637999.75151 "main.aux" "main.bbl" "main" 1746638000.56172 0
+  "./references.bib" 1746637752.11524 2063 b008b9b7af77e503c5cd593cb11eac0c ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1746636910.35271 990 c29dfee6c11a81735de6aefae0e941cb "pdflatex"
+  "main.aux" 1746638000.33313 1614 b31bb3a3b35f027f491c8829c41e1f36 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1746636909.86174 "/Users/juan/Local/2025-10loc/ISIS4825/proyecto/repositorio/docs/main.tex" "main.pdf" "main" 1746636910.58415 0
-  "/Users/juan/Local/2025-10loc/ISIS4825/proyecto/repositorio/docs/main.tex" 1746636909.64911 2782 bbc2f228dfbb1820fc0780394d48070e ""
+["pdflatex"] 1746637999.86674 "/Users/juan/Local/2025-10loc/ISIS4825/proyecto/repositorio/docs/main.tex" "main.pdf" "main" 1746638000.56183 0
+  "/Users/juan/Local/2025-10loc/ISIS4825/proyecto/repositorio/docs/main.tex" 1746637970.15789 2677 be63b7d010eba4964c5d6966db91d3d1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -78,9 +78,16 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1732125442.81949 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1732125342 8221428 71eb930738029d1450c5d288e0709c07 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1746636910.35271 990 c29dfee6c11a81735de6aefae0e941cb "pdflatex"
-  "main.bbl" 1746636623.19956 1073 74b27c02e2e1bc877602576e9e41cf38 "bibtex main"
-  "main.tex" 1746636909.64911 2782 bbc2f228dfbb1820fc0780394d48070e ""
+  "figures/flujo.png" 1746637851.24267 104653 98ebba2067c8cf4db10de84943c7df0c ""
+  "main.aux" 1746638000.33313 1614 b31bb3a3b35f027f491c8829c41e1f36 "pdflatex"
+  "main.bbl" 1746637999.86499 2268 00eef863eb64a0cfe549f760e56ee83c "bibtex main"
+  "main.tex" 1746637970.15789 2677 be63b7d010eba4964c5d6966db91d3d1 ""
+  "sections/discusion-conclusion/discusion-conclusion.tex" 1746637979.08951 42 667f0c07e6846918103969b09dcb922c ""
+  "sections/estado-del-arte/estado-del-arte.tex" 1746637744.01347 2123 5493d514b0a5586b83a80c3e642c7812 ""
+  "sections/introduccion/introduccion.tex" 1746637998.84086 1372 34d9fd56fad41a7987779c6a27bf98b4 ""
+  "sections/materiales/materiales.tex" 1746637934.26923 880 16a76b1af6c34b9446f2f679200e73b5 ""
+  "sections/metodos/metodos.tex" 1746637902.02715 2476 bb16f3d5469137ddb252b5b7ff6e3c1c ""
+  "sections/resultados/resultados.tex" 1746637983.96642 28 46ceefde7ebfc6c4b5b980da19636887 ""
   (generated)
   "main.aux"
   "main.log"

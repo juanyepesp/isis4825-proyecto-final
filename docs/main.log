@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.20)  7 MAY 2025 11:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.20)  7 MAY 2025 12:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -283,7 +283,16 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 29.
- (./main.bbl)
+ (./sections/introduccion/introduccion.tex) (./sections/estado-del-arte/estado-del-arte.tex [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]) (./sections/materiales/materiales.tex) (./sections/metodos/metodos.tex
+<figures/flujo.png, id=11, 373.395pt x 144.54pt>
+File: figures/flujo.png Graphic file (type png)
+<use figures/flujo.png>
+Package pdftex.def Info: figures/flujo.png  used on input line 18.
+(pdftex.def)             Requested size: 206.39685pt x 79.89421pt.
+) (./sections/resultados/resultados.tex) (./sections/discusion-conclusion/discusion-conclusion.tex) (./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -295,10 +304,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
-
-
-] (./main.aux
+[2 <./figures/flujo.png>] (./main.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -308,18 +314,18 @@ L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4971 strings out of 474116
- 84909 string characters out of 5743681
- 1937187 words of memory out of 5000000
- 27282 multiletter control sequences out of 15000+600000
- 592264 words of font info for 101 fonts, out of 8000000 for 9000
+ 5065 strings out of 474116
+ 87704 string characters out of 5743681
+ 1946187 words of memory out of 5000000
+ 27350 multiletter control sequences out of 15000+600000
+ 594507 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,14n,69p,457b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 61i,14n,69p,990b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (1 page, 61046 bytes).
+Output written on main.pdf (2 pages, 169500 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 40 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -20,7 +20,19 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{exampleReference}
-J.~Smith and A.~Johnson, ``Applications of ai in aerial surveillance,'' \emph{IEEE Transactions on Geoscience and Remote Sensing}, vol.~58, no.~5, pp. 3210--3220, 2020.
+\bibitem{pardini2025}
+G.~R. Pardini, P.~M. Tasinaffo, E.~H. Shiguemori, T.~N. Kuck, M.~R. Maximo, and W.~R. Gyotoku, ``Improved algorithm to detect clandestine airstrips in amazon rainforest,'' \emph{Algorithms}, vol.~18, no.~2, p. 102, 2025.
+
+\bibitem{albuquerque2024}
+A.~M. de~Albuquerque~Teixeira, L.~V. Batista, R.~M. da~Silva, L.~M.~T. Freitas, and C.~A.~G. Santos, ``Dynamic monitoring of surface area and water volume of reservoirs using satellite imagery, computer vision and deep learning,'' \emph{Remote Sens. Appl.: Soc. Environ.}, vol.~35, p. 101205, 2024.
+
+\bibitem{ferreira2019}
+A.~Ferreira, S.~C. Felipussi, R.~Pires, S.~Avila, G.~Santos, J.~Lambert, and A.~Rocha, ``Eyes in the skies: A data-driven fusion approach to identifying drug crops from remote sensing images,'' \emph{IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens.}, vol.~12, no.~12, pp. 4773--4786, 2019.
+
+\bibitem{pinto2023}
+J.~J.~P. Hidalgo and J.~A.~S. Centeno, ``Geospatial intelligence and artificial intelligence for detecting potential coca paste production infrastructure in the border region of venezuela and colombia,'' \emph{J. Appl. Secur. Res.}, vol.~18, no.~4, pp. 1000--1050, 2023.
+
+\bibitem{sloan2024}
+S.~Sloan, R.~R. Talkhani, T.~Huang, J.~Engert, and W.~F. Laurance, ``Mapping remote roads using artificial intelligence and satellite imagery,'' \emph{Remote Sens.}, vol.~16, no.~5, p. 839, 2024.
 
 \end{thebibliography}
