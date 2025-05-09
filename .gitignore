@@ -1,3 +1,5 @@
 /data
 /labeled
 .DS_Store
+/notebooks/yolo11n.pt
+/notebooks/yolo11s.pt
