@@ -11,6 +11,6 @@ def predict_yolo(img: Image.Image) -> Image.Image:
     img_np = np.array(img.convert("RGB")) 
     img_bgr = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR) 
     preprocessed = process_image_array(img_bgr)
-    results = model(preprocessed)
+    results = model.predict(preprocessed)
     annotated = results[0].plot()
     return Image.fromarray(annotated)

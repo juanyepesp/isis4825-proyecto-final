@@ -40,7 +40,7 @@ async def predict(model_name: str, file: UploadFile = File(...)):
     elif model_name == "modelo_3":
         pred_img = input_img.transpose(Image.FLIP_LEFT_RIGHT)
         
-    elif model_name == 'yolov11_s':
+    elif model_name == 'yolo_v11s':
         pred_img = predict_yolo(img=input_img)
     else:
         raise ValueError(f"Unsupported model: {model_name}")
