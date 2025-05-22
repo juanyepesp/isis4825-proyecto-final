@@ -3,3 +3,4 @@
 .DS_Store
 /notebooks/yolo11n.pt
 /notebooks/yolo11s.pt
+/runs/detect/flir_yolov11l_preprocesado/weights
