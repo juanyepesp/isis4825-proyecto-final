@@ -3,3 +3,6 @@ env/
 venv/
 *.env
 *.venv
+
+# Ignore Dependencies
+models/

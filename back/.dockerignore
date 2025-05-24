@@ -1,0 +1,33 @@
+# Ignore Python virtual environments
+env/
+.venv/
+
+# Bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# Ignore model checkpoints if not needed
+*.ckpt
+*.log
+
+# System and editor junk
+.DS_Store
+*.swp
+*.swo
+*.bak
+.idea/
+.vscode/
+
+# Ignore dependencies folder (if not used)
+dependencies/
+
+# Git
+.git
+.gitignore
+
+# Other Dockerfiles and old builds
+Dockerfile.*
+docker-compose.*
