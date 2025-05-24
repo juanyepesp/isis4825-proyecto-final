@@ -8,7 +8,13 @@
   let resultUrl: string | null = null;
   let loading = false;
 
-  const models = ['modelo_1', 'modelo_2', 'modelo_3', 'yolo_v11s'];
+  const models = [
+    'YOLO_Small',
+    'YOLO_Large',
+    'YOLO_Large_Congelando',
+    'Faster_RCNN',
+    'RetinaNet'
+  ];
   let selectedModel = models[0];
 
   onDestroy(() => {
@@ -28,7 +34,10 @@
     form.append('file', file);
 
     try {
-      const res = await fetch(`http://localhost:8000/predict/${selectedModel}`, {
+      // TODO API URL
+      const publicUrl = "52.14.236.157"
+      
+      const res = await fetch(`http://${publicUrl}:8000/predict/${selectedModel}`, {
         method: 'POST',
         body: form,
       });
