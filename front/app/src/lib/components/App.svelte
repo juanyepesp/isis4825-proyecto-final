@@ -35,12 +35,11 @@
 
     try {
       // TODO API URL
-      const publicUrl = "52.14.236.157"
-      
-      const res = await fetch(`http://${publicUrl}:8000/predict/${selectedModel}`, {
+      const res = await fetch(`/api/predict/${selectedModel}`, {
         method: 'POST',
         body: form,
       });
+
 
       if (!res.ok) {
         console.error('Upload failed', await res.text());
