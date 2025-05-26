@@ -1,3 +1,32 @@
 \section{Discusión y Conclusión}
 
+El desarrollo de un sistema automatizado de detección de minería ilegal basado en imágenes térmicas representa un avance crucial en la transformación digital de las estrategias de vigilancia ambiental y defensa territorial. La combinación entre el preprocesamiento multicanal y el uso de modelos de aprendizaje profundo permitió superar limitaciones significativas en el análisis de imágenes FLIR, tales como el ruido térmico, la baja resolución espacial, y la interferencia atmosférica inherente a la región amazónica colombiana.
+
+El esquema de preprocesamiento propuesto —basado en una representación RGB sintética donde cada canal fue optimizado para capturar distintas características visuales: suavizado estructural (R), texturas (G) y segmentación espacial (B)— se consolidó como un componente clave para enriquecer la representación de las imágenes y, por ende, potenciar el entrenamiento de los modelos. Esta estrategia fue coherente con enfoques previos en teledetección, como los descritos por Ferreira et al. (2019), quienes combinaron múltiples fuentes de datos remotos para mejorar la identificación de cultivos ilícitos en Brasil, alcanzando una precisión del 92.16 \%
+. Asimismo, Teixeira et al. (2024) lograron una segmentación precisa de embalses mediante redes neuronales profundas y preprocesamiento específico, alcanzando una precisión de 95 \% en la métrica IoU
+.
+
+Entre los modelos evaluados, YOLO11l demostró el mejor desempeño con un mAP@50 de 65.2 \%, confirmando su capacidad para detectar con alta certeza elementos relevantes en imágenes complejas. Es destacable también el rendimiento del modelo YOLO11s, que con tan solo 9.4 millones de parámetros logró un mAP@50–95 de 32.8 \%, superando incluso a su contraparte más robusta. Este hallazgo sugiere que modelos más livianos pueden ser más eficientes en contextos donde la localización precisa es más crítica que la clasificación general. Estas observaciones son coherentes con la literatura, en la cual modelos YOLO optimizados han demostrado ser eficientes y precisos en entornos con restricciones de hardware y condiciones de iluminación adversas (Sloan et al., 2024)
+.
+
+En contraste, RetinaNet presentó un desempeño deficiente (mAP@50–95 de 12.2 \%), posiblemente debido a su mayor sensibilidad al desbalance de clases y a las distorsiones térmicas propias de los sensores FLIR. Esta susceptibilidad también fue observada por Sloan et al. (2024), quienes destacaron la necesidad de adaptar arquitecturas específicas para condiciones atmosféricas y geomorfológicas extremas
+.
+
+Un aspecto limitante fue la naturaleza indirecta de las clases detectadas. Aunque el modelo logró identificar carreteras no pavimentadas y cuerpos de agua —ambos elementos comúnmente asociados con la minería ilegal—, la ausencia de clases explícitas como dragas, campamentos o balsas restringe su aplicabilidad directa para pruebas legales o intervenciones operativas. Pinto Hidalgo et al. (2023) subrayan la importancia de combinar imágenes satelitales con datos geoespaciales para mejorar la precisión en la detección de infraestructuras ilegales de producción de coca, lo que sugiere una posible línea de mejora para este proyecto
+.
+
+Desde una perspectiva operativa, los resultados alcanzados son altamente alentadores. La integración de estos modelos en sistemas de vigilancia aérea de la Fuerza Aeroespacial Colombiana (FAC) podría reducir significativamente los tiempos de análisis y aumentar la precisión en la identificación temprana de amenazas ambientales. Además, el sistema podría escalarse para apoyar tareas de monitoreo de deforestación, planificación territorial y gestión de recursos hídricos, en línea con aplicaciones discutidas por Teixeira et al. (2024) y Ferreira et al. (2019)
+.
+
+En términos éticos y sociales, es imperativo asegurar que estas tecnologías se apliquen con protocolos de supervisión humana, salvaguardando los derechos de las comunidades locales. La inteligencia artificial no puede ni debe reemplazar el juicio humano, especialmente cuando se trata de intervenciones en territorios habitados o culturalmente sensibles.
+
+Finalmente, este trabajo abre múltiples posibilidades de investigación. En particular, el uso de modelos multimodales que combinen imágenes térmicas con datos ópticos o espectrales, así como la implementación de arquitecturas basadas en transformers o aprendizaje auto-supervisado, podría mejorar la adaptabilidad del sistema a nuevos dominios con escasa disponibilidad de datos etiquetados.
+
+VI. Conclusiones
+Este proyecto demuestra la viabilidad técnica y operativa de utilizar algoritmos de aprendizaje profundo, especialmente modelos YOLO y Faster R-CNN, para automatizar la detección de carreteras no pavimentadas y cuerpos de agua en imágenes térmicas FLIR capturadas por plataformas aéreas de vigilancia. La implementación de un esquema de preprocesamiento multicanal permitió mejorar notablemente la calidad de las imágenes y optimizar el desempeño de los modelos, alcanzando mejoras significativas en métricas como mAP@50 y mAP@50–95.
+
+Los resultados obtenidos evidencian el potencial de estas herramientas para ser integradas en sistemas reales de monitoreo ambiental y vigilancia territorial, contribuyendo a la lucha contra la minería ilegal en la Amazonía colombiana. A su vez, el enfoque metodológico propuesto puede ser transferido a otros escenarios de análisis remoto, como la detección de deforestación, el monitoreo de cuerpos hídricos y la planificación de intervenciones sobre el territorio.
+
+Se recomienda continuar con la expansión del conjunto de datos, incluyendo clases adicionales representativas de actividades mineras ilegales, así como explorar arquitecturas avanzadas que permitan una mayor precisión en entornos hostiles. La colaboración interdisciplinaria entre ingenieros, biólogos, militares y comunidades locales será clave para escalar estos desarrollos hacia aplicaciones de mayor impacto social, ambiental y geopolítico.
+
 % TODO

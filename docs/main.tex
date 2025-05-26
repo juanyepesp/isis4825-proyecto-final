@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \usepackage{url}
 \usepackage[spanish]{babel}
 
@@ -18,7 +19,8 @@
         \IEEEauthorrefmark{1}Maestría en Biología Computacional,\\
         \IEEEauthorrefmark{2}Pregrado en Ingeniería de Sistemas y Computación,\\
         \IEEEauthorrefmark{3}Maestría en Ingeniería de Sistemas y Computación,\\
-        Facultad de Ingeniería, Universidad de los Andes, Bogotá, Colombia
+        Facultad de Ingeniería, Universidad de los Andes, Bogotá, Colombia,\\
+        Facultad de Ciencias, Universidad de los Andes, Bogotá, Colombia
     }
     
 }
@@ -30,13 +32,11 @@
 
 \begin{abstract}
     % TODO
-    La Fuerza Aeroespacial Colombiana (FAC), en alianza con la Universidad de los Andes, busca modernizar sus procesos mediante soluciones innovadoras para la protección ambiental. Su principal objetivo es preservar la Amazonia Colombiana mediante el análisis de videos capturados con sensores aerotransportados para detectar minería ilegal.
-
-    Este análisis, tradicionalmente manual, ahora se enfocará en la detección automatizada de carreteras no pavimentadas y cuerpos de agua. Esta automatización optimiza la identificación de áreas afectadas, mejorando la precisión y eficiencia del proceso.
-
-    Se prevén tres beneficios clave: reducción del tiempo y errores en la identificación mediante inteligencia artificial, mejora en la segmentación de imágenes y fortalecimiento de la toma de decisiones en operaciones militares. 
-
-    Además, esta tecnología tiene aplicaciones más amplias, como el apoyo a imágenes satelitales para la planeación militar, el monitoreo de la deforestación y la gestión de recursos hídricos. También puede contribuir a la formulación de políticas ambientales, al fortalecimiento de la seguridad en la región y al desarrollo de nuevas investigaciones.    
+    La Fuerza Aeroespacial Colombiana (FAC), en colaboración con la Universidad de los Andes, desarrolló un sistema automatizado para detectar minería ilegal en la Amazonía mediante el análisis de imágenes térmicas FLIR capturadas por sensores aerotransportados. El sistema se centra en la detección de carreteras no pavimentadas y cuerpos de agua como indicadores indirectos de actividad minera.
+    
+    Se propuso un esquema de preprocesamiento multicanal que mejora la calidad visual de las imágenes térmicas al combinar representaciones sintéticas optimizadas para texturas, estructuras y segmentación espacial. Posteriormente, se evaluaron modelos de aprendizaje profundo, destacándose YOLOv11l con un mAP@50 de 65.2\% y YOLOv11s con un mAP@50–95 de 32.8\%, superando incluso a modelos más robustos. En contraste, RetinaNet obtuvo resultados limitados (mAP@50–95 de 12.2\%) debido a su sensibilidad al desbalance de clases y a las distorsiones térmicas.
+    
+    Los resultados validan la viabilidad técnica del enfoque propuesto y su potencial integración en sistemas reales de monitoreo ambiental y operaciones militares. El sistema ofrece beneficios clave como la reducción del tiempo de análisis, la mejora en la segmentación y la toma de decisiones más precisa. Además, puede escalarse a otras aplicaciones, como la detección de deforestación, la gestión de recursos hídricos y el soporte a políticas públicas de conservación ambiental.    
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -45,7 +45,6 @@ Palabras clave; separadas; por punto y coma. %TODO
 
 \input{sections/introduccion/introduccion}
 \input{sections/estado-del-arte/estado-del-arte}
-\input{sections/materiales/materiales}
 \input{sections/metodos/metodos}
 \input{sections/resultados/resultados}
 \input{sections/discusion-conclusion/discusion-conclusion}

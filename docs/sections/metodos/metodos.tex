@@ -1,21 +1,74 @@
 \section{Métodos}
+\subsection{Obtención de datos}
+Se dispone de 25 minutos de video etiquetado, el cual ha sido dividido en alrededor de 4,000 fotogramas en formato PNG. Estos fotogramas pertenecen a las Fuerzas Aéreas Colombianas (FAC) y provienen de cámaras FLIR (Forward-Looking Infrared), sensores térmicos avanzados que permiten la detección de objetos y actividades a partir de la radiación infrarroja emitida por los cuerpos. Los fotogramas incluyen diversas capturas de territorios con características variadas, tales como montañas, cuerpos de agua, carreteras, vehículos, entre otros. Además, se cuenta con las coordenadas geográficas de las imágenes para facilitar la identificación de objetos dentro de ellas. No obstante, los fotogramas presentan ciertos problemas, como exceso de ruido, distorsión, sombras y baja resolución; así que fue necesario hacer un preprocesamiento de éstas (ver sección \ref{prepro_datos}). 
 
-El proyecto se enfoca en mejorar imágenes mediante preprocesamiento, reducción de ruido y optimización visual. Se inició con 28 imágenes exploratorias para pruebas antes de aplicarlo a un conjunto de datos mayor.  Primero, se verifican el tipo y dimensiones de cada imagen. Luego, se convierten a escala de grises para simplificar el análisis y reducir la complejidad computacional, ajustándolas al formato unit8 sin pérdida de información. Después, se genera el histograma de intensidad para analizar contraste y distribución de píxeles. Luego, se aplica la ecualización del histograma para mejorar la visibilidad. Para reducir ruido y resaltar detalles, se usan filtros como el bilateral, que suaviza sin perder bordes, y el laplaciano, que enfatiza contornos. Un proceso automatizado aplica estos pasos a todas las imágenes.
-Los resultados se evalúan comparando imágenes originales y procesadas. Se prueban combinaciones adicionales de filtros, como el de mediana y el gaussiano, para optimizar la nitidez. Esta fase exploratoria garantiza la efectividad del método antes de su aplicación en un conjunto de datos mayor.
+\subsection{Preprocesamiento de las imágenes} \label{prepro_datos}
 
-Para llevar a cabo este proceso, se utilizan diversas herramientas y bibliotecas especializadas en procesamiento de imágenes y análisis de datos, las cuales están alineadas con los objetivos del proyecto optimizando tiempo de procesamiento por medio de la automatización. Algunas de las herramientas clave incluyen:
+Los datos fueron preprocesados en Python utilizando la biblioteca \texttt{scikit-image}, la cual forma parte del ecosistema de \texttt{scikit-learn} y ofrece una amplia colección de algoritmos para el procesamiento de imágenes. Las imágenes empleadas contienen tres canales correspondientes al modelo RGB (rojo, verde y azul). Para el preprocesamiento, se trabajó inicialmente con cada banda por separado y, posteriormente, se integraron para formar la imagen compuesta. 
+
+Adicionalmente, se aplicaron técnicas de aumentación de datos con el objetivo de incrementar el número de muestras, aportar mayor variabilidad y reducir el riesgo de sobreajuste (\textit{overfitting}). Esta fase se llevó a cabo manipulando las representaciones de cada imagen a través de sus respectivos canales.
+
+En el \textbf{canal rojo}, el preprocesamiento se enfocó en la reducción de ruido y la mejora de la calidad de la imagen. Inicialmente, se aplicó un filtro gaussiano, que suaviza la imagen sin introducir artefactos indeseados mediante una distribución gaussiana que pondera los píxeles vecinos. Se utilizó un valor de \texttt{sigma} = 1.5, correspondiente a un suavizado intermedio. La imagen resultante se convirtió al tipo de datos \texttt{uint8}. Luego, se aplicó un filtro mediano, útil para eliminar ruido del tipo sal y pimienta y preservar los bordes. Este filtro se aplicó con una ventana de 5x5 píxeles.
+
+Finalmente, se aplicó un filtro guiado no lineal que emplea la imagen original como guía para suavizar la imagen previamente filtrada. Este tipo de filtro conserva los bordes con mayor precisión. Se utilizó un radio de 5 y un valor de $\epsilon = 10^{-2}$, lo suficientemente bajo para preservar detalles importantes. El resultado fue una imagen suavizada con bordes claramente definidos, lo cual es fundamental para identificar adecuadamente elementos como carreteras sin pavimentar y cuerpos de agua.
+
+En el \textbf{canal azul}, se utilizó la segmentación basada en el modelo de \textit{Chan-Vese}, que separa automáticamente la imagen en regiones homogéneas en función de similitudes en color, textura o intensidad. El objetivo fue distinguir entre la \textit{región de interés} (carreteras y cuerpos de agua) y el fondo. 
+
+Los parámetros empleados fueron:
+
 \begin{itemize}
-    \item \textbf{Python}: El lenguaje de programación utilizado para implementar la solución.
-    \item \textbf{OpenCV}: Biblioteca para el procesamiento de imágenes.
-    \item \textbf{Matplotlib}: Utilizada para visualizar y comparar las imágenes procesadas.
-    \item \textbf{NumPy}: Biblioteca esencial para la manipulación de matrices.
+    \item $\mu = 0.25$: regula el suavizado de las fronteras segmentadas. Un valor bajo favorece la preservación de bordes.
+    \item \texttt{tol} $= 10^{-3}$: umbral de tolerancia para la convergencia del algoritmo.
+    \item Número máximo de iteraciones: 100, con un paso de actualización de 0.5, lo cual promueve una segmentación precisa.
 \end{itemize}
 
-Adicionalmente, el flujo de trabajo (Figura 1) asegura que las imágenes sean procesadas de manera eficiente y efectiva, permitiendo mejorar su calidad visual y, al mismo tiempo, optimizar el tiempo de procesamiento a través de la automatización de tareas repetitivas. Las imágenes exploratorias sirven como un paso intermedio para validar las técnicas antes de aplicar el proceso al conjunto de datos completo.
+Este proceso permitió aislar regiones homogéneas, facilitando la eliminación del fondo y resaltando los objetos de interés.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/flujo.png}
-    \caption{Flujo de trabajo para el procesamiento de imágenes.}
-    \label{fig:flujo_trabajo}
-\end{figure}
+En la \textbf{banda verde} se aplicó un filtro lineal del tipo Gabor, ideal para capturar patrones espaciales, especialmente texturas, en diferentes orientaciones y escalas. Se construyó un banco de filtros Gabor con diversas orientaciones, cuyas respuestas se promediaron para combinar la información de textura. Posteriormente, la imagen combinada fue normalizada al rango [0, 255], preparando los valores de los píxeles para su incorporación en el canal verde.
+
+Este procesamiento es clave para resaltar patrones y texturas útiles en tareas de segmentación y detección de objetos en escenas complejas.
+
+Finalmente, las imágenes resultantes de cada canal fueron combinadas para formar una única imagen RGB en la que cada banda aporta información única y complementaria.
+
+\subsection{Modelos de Detección de Objetos}
+
+Para llevar a cabo la detección de objetos en las imágenes, se implementaron diversos modelos de aprendizaje profundo, específicamente: \textbf{YOLO}, \textbf{Faster R-CNN} y \textbf{RetinaNet}.
+
+
+\subsubsection{YOLO (You Only Look Once)}
+YOLO es un algoritmo de detección de objetos en tiempo real ampliamente utilizado en visión por computador. Su enfoque consiste en dividir una imagen en una cuadrícula y, en una sola pasada, predecir simultáneamente las cajas delimitadoras (bounding boxes) y las clases de los objetos. Gracias a esta arquitectura unificada, YOLO ofrece un excelente equilibrio entre velocidad y precisión.
+
+En este proyecto se trabajó con tres variantes de YOLO, todas entrenadas con imágenes propias del conjunto de datos.
+
+\begin{itemize}
+    \item \textbf{YOLO Small:} 
+    Esta versión del modelo es más liviana y está optimizada para funcionar en dispositivos con recursos computacionales limitados. Se entrenó desde cero utilizando la implementación de la librería \textit{Ultralytics}. El proceso de entrenamiento se realizó con un máximo de \textbf{50 épocas} y un tamaño de imagen de \textbf{640 píxeles}, buscando un equilibrio entre velocidad de entrenamiento y precisión. Se utilizó un \textbf{batch size de 16}, y se aplicó la técnica de \textit{early stopping} con una paciencia de 8 épocas. Además, se habilitó la \textbf{aumentación de datos} para mejorar la capacidad de generalización del modelo, introduciendo transformaciones aleatorias como rotaciones, escalados y variaciones en la iluminación. Se registró el tiempo total de entrenamiento para evaluar la eficiencia del modelo.
+
+    \item \textbf{YOLO Large:}
+    Esta variante representa una versión más robusta y precisa del modelo YOLO. También fue entrenada desde cero con el dataset propio, siguiendo una configuración similar a la del modelo Small: \textbf{50 épocas}, tamaño de imagen de \textbf{640 píxeles}, \textbf{batch size de 16} y \textbf{early stopping} con paciencia de 8 épocas. La diferencia principal radica en su mayor capacidad de representación, lo que se traduce en un mejor rendimiento en tareas complejas, aunque con un mayor consumo de memoria y tiempo de entrenamiento. Se activó igualmente la aumentación de datos para reforzar la generalización del modelo ante condiciones variadas.
+
+    \item \textbf{YOLO Large con fine-tuning (congelando el backbone):}
+    En esta tercera configuración se aplicó una estrategia de \textit{transfer learning}, partiendo de un modelo YOLO Large preentrenado en un conjunto de datos extenso. Se congeló el \textbf{backbone} (capas encargadas de extraer características generales), entrenando únicamente las capas finales responsables de la detección (\textit{head}). Para ello, se bloquearon explícitamente las primeras 14 capas del modelo (\texttt{model.0} a \texttt{model.13}), lo cual se reforzó utilizando el parámetro \texttt{freeze=14}. Como resultado, solo alrededor del \textbf{3\%} de los parámetros del modelo fueron entrenables, reduciendo significativamente el tiempo y los recursos necesarios. Esta variante fue entrenada durante \textbf{20 épocas}, con un \textbf{batch size de 8}, utilizando un \textbf{learning rate reducido de 0.001} y el optimizador \textbf{Adam}, ideal para ajustes rápidos. Se habilitó el uso de GPU si estaba disponible, y el modelo resultante fue exportado en formato \textbf{ONNX}, permitiendo su integración en sistemas de inferencia en tiempo real.
+    Esta estrategia permitió adaptar eficazmente el modelo a un nuevo dominio de aplicación, aprovechando los conocimientos previos del modelo base.
+\end{itemize}
+
+\subsubsection{Faster R-CNN}  
+Faster R-CNN es un modelo de detección de objetos de dos etapas ampliamente reconocido por su alta precisión. Su arquitectura combina una red de propuestas de regiones (\textit{Region Proposal Network}, RPN) con una segunda etapa que clasifica y ajusta las cajas generadas. En este trabajo, se entrena el modelo desde cero utilizando imágenes propias y anotaciones personalizadas. El pipeline de entrenamiento y evaluación fue desarrollado en PyTorch, partiendo de un conjunto de imágenes anotadas en formato YOLO, cuyas etiquetas son convertidas a coordenadas absolutas \([x_1, y_1, x_2, y_2]\) compatibles con Faster R-CNN. El modelo base es una versión preentrenada de \texttt{fasterrcnn\_resnet50\_fpn}, al cual se le reemplaza la cabeza de clasificación para detectar dos clases específicas: ``carretera'' y ``río'', además de la clase de fondo. Durante el entrenamiento, se emplean técnicas como \textit{gradient clipping} para mejorar la estabilidad numérica, \textit{learning rate scheduling} para una mejor convergencia, y \textit{early stopping} para prevenir el sobreajuste. El mejor modelo se guarda automáticamente según su rendimiento en la validación. Aunque este enfoque conlleva mayores tiempos de inferencia comparado con modelos más livianos como YOLO, ofrece resultados sobresalientes en términos de precisión.
+
+\subsubsection{RetinaNet}  
+RetinaNet es un modelo de detección de objetos de una sola etapa que destaca por su uso de la función de pérdida \textit{Focal Loss}, diseñada específicamente para mitigar el impacto del desbalance de clases durante el entrenamiento. El modelo fue entrenado desde cero utilizando nuestras propias imágenes, implementando un pipeline completo en PyTorch y Torchvision. Se define una clase personalizada \texttt{RetinaNetDataset} que carga imágenes y etiquetas en formato YOLO, transformando las coordenadas normalizadas en cajas delimitadoras absolutas compatibles con RetinaNet. Se construyen \textit{DataLoaders} para los conjuntos de entrenamiento y validación, garantizando un rendimiento eficiente. Durante el entrenamiento, se permite la actualización de todos los parámetros del modelo para maximizar el aprendizaje.
+
+
+Para todos los modelos, se evalúa el rendimiento periódicamente utilizando métricas estándar como \textit{mAP@0.5} y \textit{mAP@0.5:0.95}, que miden la precisión en la detección y clasificación correcta de objetos. Este enfoque asegura una evaluación rigurosa y comparativa de la efectividad de los modelos entrenados.
+
+\subsection{Despliegue}
+
+Para facilitar la interacción del usuario con los modelos de detección de ríos y carreteras, se diseñó un sistema modular compuesto por dos componentes principales: un \textbf{frontend} y un \textbf{backend}. Esta arquitectura se eligió con el objetivo de separar las responsabilidades entre la presentación de la interfaz y la lógica de procesamiento, permitiendo así una mayor flexibilidad en el desarrollo.
+
+El \textbf{backend} fue planteado en \texttt{Python}, dado que todos los modelos fueron desarrollados y entrenados en este lenguaje utilizando bibliotecas como \texttt{PyTorch} y \texttt{Ultralytics}. Se propuso el uso de un framework ligero como \texttt{FastAPI} para exponer servicios web que reciban imágenes desde el cliente, procesen la solicitud con el modelo seleccionado por el usuario y retornen los resultados en un formato estructurado. La arquitectura considera la posibilidad de cargar dinámicamente distintos modelos según la petición, evitando mantenerlos todos en memoria de forma simultánea.
+
+El \textbf{frontend} se desarrolló utilizando el framework \texttt{Svelte}, debido a su simplicidad, bajo peso y rapidez de desarrollo. La interfaz fue concebida como una herramienta sencilla, enfocada en la usabilidad: permite al usuario cargar una o varias imágenes, seleccionar el modelo de detección que desea emplear, y enviar la solicitud al backend. La comunicación entre frontend y backend se plantea mediante peticiones HTTP tipo POST con los archivos y parámetros necesarios.
+
+En cuanto al despliegue, se contempló inicialmente un entorno local para facilitar la prueba y validación del sistema durante el desarrollo. No obstante, dado el requerimiento de que este despliegue debe ser consultable para el equipo docente, se utilizaron contenedores (\texttt{Docker}) con servicios de la nube de AWS, para poder tener la solución en un ambiente productivo.
+
+Todo el código fuente del proyecto, el cual contiene esta misma documentación, el back-end, front-end, y los notebooks utilizados para varios propósitos, se encuentran en el siguiente repositorio público de Github: \href{https://github.com/juanyepesp/isis4825-proyecto-final}{https://github.com/juanyepesp/isis4825-proyecto-final}
