@@ -4,6 +4,7 @@
   import ImageUploader from './ImageUploader.svelte';
   import PredictionDisplay from './PredictionDisplay.svelte';
 
+  
   let file: File | null = null;
   let resultUrl: string | null = null;
   let loading = false;
